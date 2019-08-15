@@ -1,21 +1,5 @@
 <link href="/css/bootstrap.min.css" rel="stylesheet">
 <link href="/css/cover.css" rel="stylesheet">
-<?php
-require "db.php";
-
-if ($cover == "") { 
-    $stmt = $pdo->query('SELECT firstname FROM user ORDER BY id DESC LIMIT 1');
-    while ($row = $stmt->fetch())
-    {
-        $cover = "Welcome to DXC " . $row['firstname'] . "\n";
-    }
-
-    if ($cover == "") {
-        header('Location: /init.php');
-    }
-}
-
-?>
 
 <body class="text-center">
     <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
@@ -23,18 +7,19 @@ if ($cover == "") {
     <div class="inner">
       <h3 class="masthead-brand">DXC</h3>
       <nav class="nav nav-masthead justify-content-center">
-        <a class="nav-link active" href="#">Home</a>
+        <a class="nav-link active" href="/">Home</a>
       </nav>
     </div>
   </header>
 
-  <main role="main" class="inner cover">
-    <h1 class="cover-heading"><?php echo $cover; ?></h1>
-    <p class="lead">Not you?</p>
-    <p class="lead">
-      <a href="register.php" class="btn btn-lg btn-secondary">Register here</a>
-    </p>
-  </main>
+  <form class="form-signin" action="submit.php" method="POST" style="padding-left: 100;padding-right: 100;">
+  <img class="mb-4" src="image/dxc.png" alt="" width="72" height="72">
+  <h1 class="h3 mb-3 font-weight-normal">Registration</h1>
+  <label for="inputName" class="sr-only">Full Name</label>
+  <input type="input" name="inputName" id="inputName" class="form-control" placeholder="Full Name" required="" autofocus=""><br />
+  <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
+  <p class="mt-5 mb-3 text-muted">© 2017-2019</p>
+  </form>
 
   <footer class="mastfoot mt-auto">
     <div class="inner">
